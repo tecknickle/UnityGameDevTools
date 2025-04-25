@@ -7,6 +7,6 @@ They have been coded in C# and designed adhearing to SOLID design principles:
 - Open-Closed Principle
 - Liskov Substitution Principle
 - Interface Segregation Principle
-- Dependancy Inversion Principle
+- Dependency Inversion Principle
 
 These priciples ensure scalable, organized, and maintanable code as my games grow in size.
