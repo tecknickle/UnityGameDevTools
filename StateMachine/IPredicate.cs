@@ -1,7 +1,4 @@
-﻿namespace CannonMonke
+public interface IPredicate
 {
-    public interface IPredicate
-    {
-        bool Evaluate();
-    }
+    bool Evaluate();
 }
