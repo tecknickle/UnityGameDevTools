@@ -1,44 +1,41 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Utilities;
 
-namespace CannonMonke
+public class HoldableSpawnManager : EntitySpawnManager
 {
-    public class HoldableSpawnManager : EntitySpawnManager
+    [SerializeField] HoldableData[] holdableObjectData;
+    [SerializeField] float spawnInterval = 0f;
+
+    EntitySpawner<Holdable> spawner;
+
+    CountdownTimer spawnTimer;
+    int counter;
+
+    protected override void Awake()
     {
-        [SerializeField] HoldableData[] holdableObjectData;
-        [SerializeField] float spawnInterval = 0f;
+        base.Awake();
 
-        EntitySpawner<Holdable> spawner;
+        spawner = new EntitySpawner<Holdable>(
+            new EntityFactory<Holdable>(holdableObjectData),
+            spawnPointStrategy);
 
-        CountdownTimer spawnTimer;
-        int counter;
-
-        protected override void Awake()
+        spawnTimer = new CountdownTimer(spawnInterval);
+        spawnTimer.OnTimerStop += () =>
         {
-            base.Awake();
-
-            spawner = new EntitySpawner<Holdable>(
-                new EntityFactory<Holdable>(holdableObjectData),
-                spawnPointStrategy);
-
-            spawnTimer = new CountdownTimer(spawnInterval);
-            spawnTimer.OnTimerStop += () =>
+            if (counter++ >= spawnPoints.Length)
             {
-                if (counter++ >= spawnPoints.Length)
-                {
-                    spawnTimer.Stop();
-                    return;
-                }
+                spawnTimer.Stop();
+                return;
+            }
 
-                Spawn();
-                spawnTimer.Start();
-            };
-        }
-
-        void Start() => spawnTimer.Start();
-
-        void Update() => spawnTimer.Tick(Time.deltaTime);
-
-        public override void Spawn() => spawner.Spawn();
+            Spawn();
+            spawnTimer.Start();
+        };
     }
+
+    void Start() => spawnTimer.Start();
+
+    void Update() => spawnTimer.Tick(Time.deltaTime);
+
+    public override void Spawn() => spawner.Spawn();
 }
