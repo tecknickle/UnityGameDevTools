@@ -1,10 +1,7 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using UnityEngine;
 
-namespace CannonMonke
+public interface ISpawnPointStrategy 
 {
-    public interface ISpawnPointStrategy 
-    {
-        Transform NextSpawnPoint();
-    }
+    Transform NextSpawnPoint();
 }
