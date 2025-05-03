@@ -1,9 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace CannonMonke
+public abstract class Entity : MonoBehaviour 
 {
-    public abstract class Entity : MonoBehaviour 
-    {
-        
-    }
+    
 }
