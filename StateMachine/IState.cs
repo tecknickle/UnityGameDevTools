@@ -1,12 +1,9 @@
 using UnityEngine;
 
-namespace CannonMonke
+public interface IState
 {
-    public interface IState
-    {
-        void OnEnter();
-        void Update();
-        void FixedUpdate();
-        void OnExit();
-    }
+    void OnEnter();
+    void Update();
+    void FixedUpdate();
+    void OnExit();
 }
