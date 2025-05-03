@@ -1,9 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace CannonMonke
+public interface IEntityFactory<T> where T : Entity 
 {
-    public interface IEntityFactory<T> where T : Entity 
-    {
-        T Create(Transform spawnPoint);
-    }
+    T Create(Transform spawnPoint);
 }
