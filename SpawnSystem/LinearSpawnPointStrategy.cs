@@ -1,22 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-namespace CannonMonke
+public class LinearSpawnPointStrategy : ISpawnPointStrategy
 {
-    public class LinearSpawnPointStrategy : ISpawnPointStrategy
+    int index = 0;
+    Transform[] spawnPoints;
+
+    public LinearSpawnPointStrategy(Transform[] spawnPoints)
     {
-        int index = 0;
-        Transform[] spawnPoints;
+        this.spawnPoints = spawnPoints;
+    }
 
-        public LinearSpawnPointStrategy(Transform[] spawnPoints)
-        {
-            this.spawnPoints = spawnPoints;
-        }
-
-        public Transform NextSpawnPoint()
-        {
-            Transform result = spawnPoints[index];
-            index = (index + 1) % spawnPoints.Length;
-            return result;
-        }
+    public Transform NextSpawnPoint()
+    {
+        Transform result = spawnPoints[index];
+        index = (index + 1) % spawnPoints.Length;
+        return result;
     }
 }
